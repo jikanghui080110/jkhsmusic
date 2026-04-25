@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>管理页面 | J.的音乐</title>
+    <link rel="stylesheet" href="./css/style.css" />
+  </head>
+  <body>
+    <main class="admin-shell">
+      <section id="auth-panel" class="form-card auth-panel">
+        <h1>管理登录</h1>
+        <p class="muted-text">只有你的 Supabase 账号登录后，才能新增和修改歌曲。</p>
+        <form id="login-form" class="form-grid">
+          <div class="field-group">
+            <label for="login-email">邮箱</label>
+            <input id="login-email" class="text-input" name="email" type="email" required />
+          </div>
+          <div class="field-group">
+            <label for="login-password">密码</label>
+            <input id="login-password" class="text-input" name="password" type="password" required />
+          </div>
+          <div class="actions-row">
+            <button class="solid-button" type="submit">登录</button>
+            <a class="ghost-button" href="./list.html">返回列表</a>
+          </div>
+        </form>
+        <p id="login-status" class="field-hint"></p>
+      </section>
+
+      <section id="admin-app" class="is-hidden">
+        <header class="admin-topbar">
+          <div>
+            <a class="text-link" href="./list.html">查看前台列表</a>
+            <h1>歌曲管理</h1>
+            <p id="session-email" class="muted-text"></p>
+          </div>
+          <div class="actions-row">
+            <button id="new-song-button" class="ghost-button" type="button">新建歌曲</button>
+            <button id="logout-button" class="solid-button" type="button">退出登录</button>
+          </div>
+        </header>
+
+        <section class="admin-layout">
+          <article class="form-card">
+            <h2 id="editor-title">新建歌曲</h2>
+            <form id="song-form" class="form-grid">
+              <input id="song-id" name="id" type="hidden" />
+
+              <div class="field-group">
+                <label for="song-title">歌曲名</label>
+                <input id="song-title" class="text-input" name="title" type="text" required />
+              </div>
+
+              <div class="field-group">
+                <label for="song-artist">歌手</label>
+                <input id="song-artist" class="text-input" name="artist" type="text" required />
+              </div>
+
+              <div class="score-grid">
+                <div class="field-group">
+                  <label for="melody-score">旋律（1-5）</label>
+                  <input id="melody-score" class="score-input" name="melody_score" type="number" min="1" max="5" required />
+                </div>
+                <div class="field-group">
+                  <label for="structure-score">结构（1-5）</label>
+                  <input id="structure-score" class="score-input" name="structure_score" type="number" min="1" max="5" required />
+                </div>
+                <div class="field-group">
+                  <label for="timbre-score">音色（1-5）</label>
+                  <input id="timbre-score" class="score-input" name="timbre_score" type="number" min="1" max="5" required />
+                </div>
+                <div class="field-group">
+                  <label for="emotion-score">情感（1-5）</label>
+                  <input id="emotion-score" class="score-input" name="emotion_score" type="number" min="1" max="5" required />
+                </div>
+                <div class="field-group">
+                  <label for="relisten-score">耐听（1-5）</label>
+                  <input id="relisten-score" class="score-input" name="relisten_score" type="number" min="1" max="5" required />
+                </div>
+              </div>
+
+              <div class="field-group">
+                <label for="song-review">评价</label>
+                <textarea id="song-review" class="text-area" name="review" required></textarea>
+              </div>
+
+              <div class="actions-row">
+                <button id="save-button" class="solid-button" type="submit">保存</button>
+                <button id="reset-button" class="ghost-button" type="button">清空表单</button>
+              </div>
+              <p id="editor-status" class="field-hint"></p>
+            </form>
+          </article>
+
+          <section class="stack">
+            <article class="panel">
+              <h2>已录入歌曲</h2>
+              <p class="muted-text">点击编辑后，左侧表单会载入对应内容。</p>
+            </article>
+            <section id="admin-song-list" class="admin-song-list"></section>
+          </section>
+        </section>
+      </section>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script type="module" src="./js/admin.js"></script>
+  </body>
+</html>
