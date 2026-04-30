@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>J.的音乐</title>
+    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="./css/animations.css" />
+  </head>
+  <body>
+    <main class="home-shell">
+      <section class="home-stack">
+        <h1 class="reveal">J.的音乐</h1>
+        <a class="pill-link reveal reveal-delay-1" href="./list.html">进入歌曲列表</a>
+      </section>
+    </main>
+
+    <script>
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(el => {
+          if (el.isIntersecting) {
+            el.target.classList.add('is-visible');
+            observer.unobserve(el.target);
+          }
+        });
+      }, { threshold: 0.12 });
+
+      document.querySelectorAll('.reveal, .reveal-scale')
+        .forEach(el => observer.observe(el));
+    </script>
+  </body>
+</html>

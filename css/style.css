@@ -1,0 +1,92 @@
+:root {
+  /* 苹果官方配色库升级 */
+  --bg: #f5f5f7; /* Apple 经典铝灰色背景 */
+  --surface: rgba(255, 255, 255, 0.75);
+  --surface-strong: rgba(255, 255, 255, 0.95);
+  --text: #1d1d1f; /* 苹果官网文字色 */
+  --muted: #86868b; /* 次要文字色 */
+  --primary: #0071e3; /* Apple 蓝色 */
+  --border: rgba(0, 0, 0, 0.04);
+  --border-strong: rgba(0, 0, 0, 0.1);
+  
+  /* 阴影：使用多层阴影营造物理感 */
+  --shadow-apple: 0 8px 24px rgba(0,0,0,0.04), 0 1px 1px rgba(0,0,0,0.02);
+  --shadow-hover: 0 20px 40px rgba(0,0,0,0.08);
+  
+  --radius-lg: 20px; /* 苹果更偏向更紧凑的 20px 圆角 */
+}
+
+/* 暗黑模式保持深邃 */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #000000;
+    --surface: rgba(28, 28, 30, 0.7);
+    --surface-strong: rgba(44, 44, 46, 0.9);
+    --text: #f5f5f7;
+    --muted: #86868b;
+    --border: rgba(255, 255, 255, 0.08);
+    --border-strong: rgba(255, 255, 255, 0.15);
+    --shadow-apple: 0 8px 30px rgba(0,0,0,0.3);
+  }
+}
+
+body {
+  margin: 0;
+  background-color: var(--bg);
+  /* 模拟 Apple Music 的流体氛围背景 */
+  background-image: 
+    radial-gradient(at 0% 0%, rgba(0, 113, 227, 0.03) 0px, transparent 50%),
+    radial-gradient(at 100% 0%, rgba(255, 45, 85, 0.03) 0px, transparent 50%);
+  color: var(--text);
+  font-family: "SF Pro Display", "SF Pro Icons", "Helvetica Neue", "PingFang SC", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* 卡片升级：极细边框 + 更清晰的毛玻璃 */
+.song-card {
+  background: var(--surface);
+  backdrop-filter: blur(30px) saturate(180%);
+  -webkit-backdrop-filter: blur(30px) saturate(180%);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-apple);
+  padding: 30px;
+  transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.song-card:hover {
+  background: var(--surface-strong);
+  border-color: var(--border-strong);
+  box-shadow: var(--shadow-hover);
+  transform: scale(1.02);
+}
+
+/* 歌曲文字排版优化 */
+.song-card h3 {
+  font-size: 19px;
+  font-weight: 600;
+  letter-spacing: -0.015em; /* 苹果特有的紧凑字间距 */
+  margin-bottom: 4px;
+}
+
+.song-card p {
+  color: var(--muted);
+  font-size: 14px;
+  font-weight: 400;
+}
+
+/* 按钮：更接近 iOS 控件 */
+.pill-link {
+  background: var(--surface-strong);
+  border: 1px solid var(--border-strong);
+  border-radius: 99px;
+  padding: 8px 16px;
+  font-weight: 500;
+  color: var(--primary);
+  transition: all 0.2s ease;
+}
+
+.pill-link:hover {
+  background: var(--primary);
+  color: white;
+}

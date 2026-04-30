@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>歌曲列表 | J.的音乐</title>
+    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="./css/animations.css" />
+  </head>
+  <body>
+    <main class="page-shell">
+      <header class="topbar">
+        <div>
+          <a class="text-link" href="./index.html">返回首页</a>
+          <h1 class="reveal">歌曲列表</h1>
+          <p class="muted-text reveal reveal-delay-1">点击任意方块进入歌曲详情。</p>
+        </div>
+        <a class="pill-link reveal reveal-delay-2" href="./admin.html">管理页面</a>
+      </header>
+
+      <section id="list-feedback" class="status-card">正在加载歌曲...</section>
+      <section id="song-grid" class="song-grid" aria-live="polite"></section>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script type="module" src="./js/list.js"></script>
+
+    <script>
+      // 静态元素的滚动入场
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(el => {
+          if (el.isIntersecting) {
+            el.target.classList.add('is-visible');
+            observer.unobserve(el.target);
+          }
+        });
+      }, { threshold: 0.12 });
+
+      document.querySelectorAll('.reveal, .reveal-scale')
+        .forEach(el => observer.observe(el));
+
+      // 监听 JS 动态插入的歌曲卡片，自动触发入场动画
+      // （list.js 渲染完卡片后，这里会自动捕捉到）
+      const gridObserver = new MutationObserver(() => {
+        document.querySelectorAll('.song-card:not([data-observed])')
+          .forEach((card, i) => {
+            card.setAttribute('data-observed', '1');
+            card.classList.add('reveal-scale');
+            // 让卡片按顺序错落入场，每张延迟 60ms
+            card.style.transitionDelay = `${i * 60}ms`;
+            observer.observe(card);
+          });
+      });
+
+      gridObserver.observe(
+        document.getElementById('song-grid'),
+        { childList: true }
+      );
+    </script>
+  </body>
+</html>
