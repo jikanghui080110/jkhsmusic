@@ -9,7 +9,7 @@
   --border: rgba(0, 0, 0, 0.04);
   --border-strong: rgba(0, 0, 0, 0.1);
   --radius-lg: 20px;
-  --shadow-apple: 0 8px 24px rgba(0,0,0,0.04), 0 1px 1px rgba(0,0,0,0.02);
+  --shadow-apple: 0 8px 24px rgba(0, 0, 0, 0.04), 0 1px 1px rgba(0, 0, 0, 0.02);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -35,8 +35,10 @@ body {
 .home-shell {
   height: 100vh;
   display: flex;
-  justify-content: center; /* 水平居中 */
-  align-items: center;     /* 垂直居中 */
+  justify-content: center;
+  /* 水平居中 */
+  align-items: center;
+  /* 垂直居中 */
   text-align: center;
 }
 
@@ -103,7 +105,8 @@ body {
 
 #chart-container {
   width: 100%;
-  max-width: 500px; /* 限制雷达图最大宽度 */
+  max-width: 500px;
+  /* 限制雷达图最大宽度 */
   margin: 0 auto;
 }
 
@@ -118,7 +121,10 @@ body {
   font-weight: 500;
 }
 
-.muted-text { color: var(--muted); font-size: 14px; }
+.muted-text {
+  color: var(--muted);
+  font-size: 14px;
+}
 
 /* style.css */
 
@@ -129,16 +135,19 @@ body {
   padding: 40px;
   display: flex;
   flex-direction: column;
-  overflow: hidden; /* 禁止溢出滚动 */
+  overflow: hidden;
+  /* 禁止溢出滚动 */
 }
 
 /* 2. 详情页内容布局：左右分布 */
 .detail-content {
   flex: 1;
   display: grid;
-  grid-template-columns: 350px 1fr; /* 左侧固定宽度，右侧自适应 */
+  grid-template-columns: 350px 1fr;
+  /* 左侧固定宽度，右侧自适应 */
   gap: 30px;
-  align-items: center; /* 垂直居中 */
+  align-items: center;
+  /* 垂直居中 */
   margin-top: 20px;
 }
 
@@ -168,7 +177,8 @@ body {
   background: var(--surface-strong);
   border-radius: var(--radius-lg);
   padding: 30px;
-  height: 80%; /* 限制高度，确保不超出一屏 */
+  height: 80%;
+  /* 限制高度，确保不超出一屏 */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -207,26 +217,31 @@ body {
 .detail-layout {
   flex: 1;
   display: grid;
-  grid-template-columns: 320px 1fr; /* 左侧固定宽度，右侧自适应 */
+  grid-template-columns: 320px 1fr;
+  /* 左侧固定宽度，右侧自适应 */
   gap: 30px;
-  align-items: stretch; /* 填充高度 */
+  align-items: stretch;
+  /* 填充高度 */
   margin-top: 20px;
 }
 
 /* 统一卡片样式：重用你定义的 song-card */
-.info-section, .chart-section {
+.info-section,
+.chart-section {
   display: flex;
   flex-direction: column;
   justify-content: center;
   padding: 40px;
-  margin: 0; /* 覆盖原有的 margin */
+  margin: 0;
+  /* 覆盖原有的 margin */
 }
 
 /* 限制雷达图容器大小，防止它撑大页面 */
 #chart-container {
   flex: 1;
   width: 100%;
-  max-height: 450px; /* 限制雷达图最高高度 */
+  max-height: 450px;
+  /* 限制雷达图最高高度 */
   display: flex;
   justify-content: center;
   align-items: center;

@@ -8,19 +8,19 @@
    ---------------------------------------------------------- */
 :root {
   /* 苹果弹簧曲线：快进慢出，带一点点弹性 */
-  --ease-spring:    cubic-bezier(0.25, 1, 0.5, 1);
+  --ease-spring: cubic-bezier(0.25, 1, 0.5, 1);
   /* 入场：从静止优雅加速 */
-  --ease-in-apple:  cubic-bezier(0.4, 0, 1, 1);
+  --ease-in-apple: cubic-bezier(0.4, 0, 1, 1);
   /* 离场：减速到静止 */
   --ease-out-apple: cubic-bezier(0, 0, 0.2, 1);
   /* 最丝滑的过渡（iOS 标准） */
-  --ease-ios:       cubic-bezier(0.36, 0.66, 0.04, 1);
+  --ease-ios: cubic-bezier(0.36, 0.66, 0.04, 1);
 
   /* 时长档位 */
-  --dur-fast:   180ms;
-  --dur-base:   340ms;
-  --dur-slow:   560ms;
-  --dur-xslow:  900ms;
+  --dur-fast: 180ms;
+  --dur-base: 340ms;
+  --dur-slow: 560ms;
+  --dur-xslow: 900ms;
 }
 
 
@@ -32,6 +32,7 @@
     opacity: 0;
     transform: translateY(12px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -52,8 +53,8 @@ body {
   opacity: 0;
   transform: translateY(32px);
   transition:
-    opacity    var(--dur-slow)  var(--ease-out-apple),
-    transform  var(--dur-slow)  var(--ease-spring);
+    opacity var(--dur-slow) var(--ease-out-apple),
+    transform var(--dur-slow) var(--ease-spring);
   will-change: opacity, transform;
 }
 
@@ -63,26 +64,49 @@ body {
 }
 
 /* 延迟变体：用于同组元素错落入场 */
-.reveal-delay-1 { transition-delay: 80ms; }
-.reveal-delay-2 { transition-delay: 160ms; }
-.reveal-delay-3 { transition-delay: 240ms; }
-.reveal-delay-4 { transition-delay: 320ms; }
-.reveal-delay-5 { transition-delay: 400ms; }
+.reveal-delay-1 {
+  transition-delay: 80ms;
+}
+
+.reveal-delay-2 {
+  transition-delay: 160ms;
+}
+
+.reveal-delay-3 {
+  transition-delay: 240ms;
+}
+
+.reveal-delay-4 {
+  transition-delay: 320ms;
+}
+
+.reveal-delay-5 {
+  transition-delay: 400ms;
+}
 
 /* 从左 / 从右滑入变体 */
-.reveal-left  { transform: translateX(-28px); }
-.reveal-right { transform: translateX(28px); }
+.reveal-left {
+  transform: translateX(-28px);
+}
+
+.reveal-right {
+  transform: translateX(28px);
+}
+
 .reveal-left.is-visible,
-.reveal-right.is-visible { transform: translateX(0); }
+.reveal-right.is-visible {
+  transform: translateX(0);
+}
 
 /* 缩放入场（适合卡片） */
 .reveal-scale {
   opacity: 0;
   transform: scale(0.94);
   transition:
-    opacity   var(--dur-slow)  var(--ease-out-apple),
-    transform var(--dur-slow)  var(--ease-spring);
+    opacity var(--dur-slow) var(--ease-out-apple),
+    transform var(--dur-slow) var(--ease-spring);
 }
+
 .reveal-scale.is-visible {
   opacity: 1;
   transform: scale(1);
@@ -95,10 +119,10 @@ body {
 .song-card {
   /* 覆盖原 transition，加入更多属性 */
   transition:
-    transform       var(--dur-base) var(--ease-spring),
-    box-shadow      var(--dur-base) var(--ease-spring),
-    background      var(--dur-base) var(--ease-out-apple),
-    border-color    var(--dur-base) var(--ease-out-apple);
+    transform var(--dur-base) var(--ease-spring),
+    box-shadow var(--dur-base) var(--ease-spring),
+    background var(--dur-base) var(--ease-out-apple),
+    border-color var(--dur-base) var(--ease-out-apple);
 
   /* 开启 GPU 合成，防抖动 */
   will-change: transform, box-shadow;
@@ -120,11 +144,11 @@ body {
    ---------------------------------------------------------- */
 .pill-link {
   transition:
-    background   var(--dur-fast) var(--ease-spring),
-    color        var(--dur-fast) var(--ease-spring),
+    background var(--dur-fast) var(--ease-spring),
+    color var(--dur-fast) var(--ease-spring),
     border-color var(--dur-fast) var(--ease-spring),
-    transform    var(--dur-fast) var(--ease-spring),
-    box-shadow   var(--dur-fast) var(--ease-spring);
+    transform var(--dur-fast) var(--ease-spring),
+    box-shadow var(--dur-fast) var(--ease-spring);
   will-change: transform;
 }
 
@@ -165,7 +189,7 @@ body {
   opacity: 0;
   transform: translateY(18px) rotate(2deg);
   transition:
-    opacity   var(--dur-base) var(--ease-out-apple),
+    opacity var(--dur-base) var(--ease-out-apple),
     transform var(--dur-base) var(--ease-spring);
 }
 
@@ -175,17 +199,49 @@ body {
 }
 
 /* 每个字自动错落（最多支持 20 个字） */
-.word-reveal.is-visible .char:nth-child(1)  { transition-delay: 0ms; }
-.word-reveal.is-visible .char:nth-child(2)  { transition-delay: 40ms; }
-.word-reveal.is-visible .char:nth-child(3)  { transition-delay: 80ms; }
-.word-reveal.is-visible .char:nth-child(4)  { transition-delay: 120ms; }
-.word-reveal.is-visible .char:nth-child(5)  { transition-delay: 160ms; }
-.word-reveal.is-visible .char:nth-child(6)  { transition-delay: 200ms; }
-.word-reveal.is-visible .char:nth-child(7)  { transition-delay: 240ms; }
-.word-reveal.is-visible .char:nth-child(8)  { transition-delay: 280ms; }
-.word-reveal.is-visible .char:nth-child(9)  { transition-delay: 320ms; }
-.word-reveal.is-visible .char:nth-child(10) { transition-delay: 360ms; }
-.word-reveal.is-visible .char:nth-child(n+11) { transition-delay: 400ms; }
+.word-reveal.is-visible .char:nth-child(1) {
+  transition-delay: 0ms;
+}
+
+.word-reveal.is-visible .char:nth-child(2) {
+  transition-delay: 40ms;
+}
+
+.word-reveal.is-visible .char:nth-child(3) {
+  transition-delay: 80ms;
+}
+
+.word-reveal.is-visible .char:nth-child(4) {
+  transition-delay: 120ms;
+}
+
+.word-reveal.is-visible .char:nth-child(5) {
+  transition-delay: 160ms;
+}
+
+.word-reveal.is-visible .char:nth-child(6) {
+  transition-delay: 200ms;
+}
+
+.word-reveal.is-visible .char:nth-child(7) {
+  transition-delay: 240ms;
+}
+
+.word-reveal.is-visible .char:nth-child(8) {
+  transition-delay: 280ms;
+}
+
+.word-reveal.is-visible .char:nth-child(9) {
+  transition-delay: 320ms;
+}
+
+.word-reveal.is-visible .char:nth-child(10) {
+  transition-delay: 360ms;
+}
+
+.word-reveal.is-visible .char:nth-child(n+11) {
+  transition-delay: 400ms;
+}
 
 
 /* ----------------------------------------------------------
@@ -193,12 +249,22 @@ body {
    在导航前给 body 加 .page-exit，导航后新页面加 .page-enter
    ---------------------------------------------------------- */
 @keyframes fade-out-up {
-  to { opacity: 0; transform: translateY(-16px); }
+  to {
+    opacity: 0;
+    transform: translateY(-16px);
+  }
 }
 
 @keyframes fade-in-up {
-  from { opacity: 0; transform: translateY(20px); }
-  to   { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 body.page-exit {
@@ -216,17 +282,20 @@ body.page-enter {
    用法：数据未到前显示，数据到了后移除
    ---------------------------------------------------------- */
 @keyframes shimmer {
-  0%   { background-position: -400px 0; }
-  100% { background-position: 400px 0; }
+  0% {
+    background-position: -400px 0;
+  }
+
+  100% {
+    background-position: 400px 0;
+  }
 }
 
 .skeleton {
-  background: linear-gradient(
-    90deg,
-    rgba(0,0,0,0.05) 25%,
-    rgba(0,0,0,0.10) 50%,
-    rgba(0,0,0,0.05) 75%
-  );
+  background: linear-gradient(90deg,
+      rgba(0, 0, 0, 0.05) 25%,
+      rgba(0, 0, 0, 0.10) 50%,
+      rgba(0, 0, 0, 0.05) 75%);
   background-size: 800px 100%;
   animation: shimmer 1.4s infinite linear;
   border-radius: 8px;
@@ -234,12 +303,10 @@ body.page-enter {
 
 @media (prefers-color-scheme: dark) {
   .skeleton {
-    background: linear-gradient(
-      90deg,
-      rgba(255,255,255,0.05) 25%,
-      rgba(255,255,255,0.10) 50%,
-      rgba(255,255,255,0.05) 75%
-    );
+    background: linear-gradient(90deg,
+        rgba(255, 255, 255, 0.05) 25%,
+        rgba(255, 255, 255, 0.10) 50%,
+        rgba(255, 255, 255, 0.05) 75%);
     background-size: 800px 100%;
   }
 }
